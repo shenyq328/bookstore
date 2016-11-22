@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Book Store</title>
+
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<h1>My Book Store</h1>
+
+		<form id="search-form">
+			<input id="search-field">
+			<button type="submit">Search</button>
+		</form>
+<br>
+		<form id="add-form">
+			<label>ISBN: </label><input id="isbn"><br>
+			<label>Title: </label><input id="title"><br>
+			<label>Author: </label><input id="author"><br>
+			<label>Cover: </label><input id="cover"><br>
+			<label>Description: </label><input id="description"><br>
+			<label>Number of Pages: </label><input id="numberOfPages"><br>
+			<label>Price Amount: </label><input id="priceAmount"><br>
+			<label>Price Currency: </label><input id="priceCurrency"><br>
+			<button type="submit">Add</button>
+		</form>
+<br>
+		<ul id="book-list">
+		</ul>
+		<script src="js/Book.js"></script>
+		<script src="js/Bookstore.js"></script>
+		<script src="js/BookstoreViewController.js"></script>
+		<script src="js/ServiceHandler.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
