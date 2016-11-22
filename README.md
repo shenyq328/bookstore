@@ -13,3 +13,5 @@ TODO:
 - Use mocha to test this application
 - Revise the HTML page
 
+View this project in Chrome
+- You can use https://shenyq328.github.io/bookstore/ to view this project. Since the application fetch book data from HTTP server while it is hosted on GitHub which is HTTPS based, the content regarding book list is blocked by browser. You need unblock the Javascript to view the page in Chrome.
