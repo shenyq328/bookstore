@@ -1,40 +1,57 @@
  class Book {
 	constructor() {
+		this.id 				= '';
+		this.isbn 				= '';
+		this.title 				= '';
+		this.author 			= '';
+		this.description 		= '';
+		this.numberOfPages 		= '';
+		this.priceAmount 		= '';
+		this.priceCurrenty 		= '';
+		this.smallImagePath 	= '';
+		this.mediumImagePath 	= '';
+		this.largeImagePath 	= '';
 	}
 	initByJsonObj(jsonBook) {
 		if (!jsonBook) {
 			return;
 		}
-		this.id 				= jsonBook.id;
-		this.isbn 				= jsonBook.isbn;
-		this.title 				= jsonBook.title;
-		this.author 			= jsonBook.author;
-		this.description 		= jsonBook.description;
-		this.numberOfPages 		= jsonBook.numberOfPages;
-		this.priceAmount 		= jsonBook.price.amount;
-		this.priceCurrency 		= jsonBook.price.currency;
-		this.smallImagePath 	= jsonBook.images.small;
-		this.mediumImagePath 	= jsonBook.images.medium;
-		this.largeImagePath 	= jsonBook.images.large;
+		this.id 				= jsonBook.id?jsonBook.id:'';
+		this.isbn 				= jsonBook.isbn?jsonBook.isbn:'';
+		this.title 				= jsonBook.title?jsonBook.title:'';
+		this.author 			= jsonBook.author?jsonBook.author:'';
+		this.description 		= jsonBook.description?jsonBook.description:'';
+		this.numberOfPages 		= jsonBook.numberOfPages?jsonBook.numberOfPages:'';
+		if (jsonBook.price) {
+			this.priceAmount 		= jsonBook.price.amount?jsonBook.price.amount:'';
+			this.priceCurrency 		= jsonBook.price.currency?jsonBook.numberOfPages:'';
+		}
+		if (jsonBook.images) {
+			this.smallImagePath 	= jsonBook.images.small?jsonBook.images.small:'';
+			this.mediumImagePath 	= jsonBook.images.medium?jsonBook.images.medium:'';
+			this.largeImagePath 	= jsonBook.images.large?jsonBook.images.large:'';
+		}
 	}
 	loadImage(imageType, callback) {
 		let targetImage;
 		switch(imageType) {
+			case 'large':
+				this.largeImage = new Image();
+				this.largeImage.src = this.largeImagePath;
+				targetImage = this.largeImage;
+				break;
 			case 'small':
 				this.smallImage = new Image();
 				this.smallImage.src = this.smallImagePath;
 				targetImage = this.smallImage;
 				break;
 			case 'medium':
+			default:
 				this.mediumImage = new Image();
 				this.mediumImage.src = this.mediumImagePath;
 				targetImage = this.mediumImage;
 				break;
-			case 'large':
-				this.largeImage = new Image();
-				this.largeImage.src = this.largeImagePath;
-				targetImage = this.largeImage;
-				break;
+			
 		}
 		targetImage.addEventListener('load', callback(targetImage));
 		targetImage.addEventListener('error', callback(error));
